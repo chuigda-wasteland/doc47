@@ -24,7 +24,7 @@
 
 <sup>3</sup> &emsp; By default, the Pr47 implementation should transfer the ownership of argument to Rust host environment when calling a foreign function, take the ownership of return value from Rust host environment when the function returns.
 
-<sup>4</sup> &emsp; For parameters satisfy `T: Copy`, the Pr47 implementation should make a copy of the argument or return value.
+<sup>4</sup> &emsp; For parameters satisfy `T: Copy`, the Pr47 implementation should make a copy of the argument.
 
 <sup>5</sup> &emsp; For parameters with reference type `&T`, the Pr47 implementation should share the argument immutably between the Pr47 environment and Rust host. For parameters with mutable reference type `&mut T`, the implementation should share the argument mutably between the Pr47 environment and Rust host. Foreign functions require mutable share are considered unsafe by Pr47.
 
@@ -33,3 +33,5 @@
 <sup>7</sup> &emsp; Before performing any operations above, `&std::option::Option<T>` should be converted to `std::option::Option<&T>` using `std::option::Option::as_ref`, and `&mut std::option::Option<T>` should be converted to `std::option::Option<&mut T>` using `std::option::Option::as_mut`.
 
 ### 3.4 &emsp; Compliation &emsp; `[pr47.exec.comp]`
+
+
