@@ -20,13 +20,13 @@
 
 <sup>1</sup> &emsp; A Pr47 implementation should provide an interface for registing foreign functions, so that scripts can use them. Registing a Rust function mostly involves remembering the function signature with assistance of `std::any::TypeId`, optionally creating a wrapper for that function and associate it with an identifier in a specific scope.
 
-<sup>2</sup> &emsp; The implementation must be able to register any `Fn` whose parameter types and return type satisfies `T: static`. The implementation may also optionally implement registration for `Fn` whose parameter types and return type satisfies `T: 'a`, where `'a` is the lifetime of Pr47 environment.
+<sup>2</sup> &emsp; An implementation must be able to register any `Fn` whose parameter types and return type satisfies `T: static`. An implementation may also optionally implement registration for `Fn` whose parameter types and return type satisfies `T: 'a`, where `'a` is the lifetime of Pr47 environment.
 
-<sup>3</sup> &emsp; By default, the Pr47 implementation should transfer the ownership of argument to Rust host environment when calling a foreign function, take the ownership of return value from Rust host environment when the function returns.
+<sup>3</sup> &emsp; By default, a Pr47 implementation should transfer the ownership of argument to Rust host environment when calling a foreign function, take the ownership of return value from Rust host environment when the function returns.
 
-<sup>4</sup> &emsp; For parameters satisfy `T: Copy`, the Pr47 implementation should make a copy of the argument.
+<sup>4</sup> &emsp; For parameters satisfy `T: Copy`, a Pr47 implementation should make a copy of the argument.
 
-<sup>5</sup> &emsp; For parameters with reference type `&T`, the Pr47 implementation should share the argument immutably between the Pr47 environment and Rust host. For parameters with mutable reference type `&mut T`, the implementation should share the argument mutably between the Pr47 environment and Rust host. Foreign functions require mutable share are considered unsafe by Pr47.
+<sup>5</sup> &emsp; For parameters with reference type `&T`, a Pr47 implementation should share the argument immutably between the Pr47 environment and Rust host. For parameters with mutable reference type `&mut T`, the implementation should share the argument mutably between the Pr47 environment and Rust host. Foreign functions require mutable share are considered unsafe by Pr47.
 
 <sup>6</sup> &emsp; For parameters with type that satisfies *type fusion* rules, see `[pr47.type.fusion]`. 
 
