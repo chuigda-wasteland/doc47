@@ -3,4 +3,7 @@ authors = ["ICEY"]
 language = "en"
 multilingual = false
 src = "src"
-title = "Project-47 series programming language documentation"
+title = "Project-47 language documentation"
+
+[output.html]
+additional-css = ["custom.css"]
