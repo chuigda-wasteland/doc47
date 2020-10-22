@@ -14,18 +14,29 @@
 
 <sup>3</sup> &emsp; **Byte** type is denoted by keyword `byte` and serves to represent a single byte. Byte type should have the same representation with Rust `u8`.
 
-<sup>4</sup> &emsp; **Char** type is denoted by keyword `char` and serves to represent a unicode character. Char type should have the same representation with Rust `char`.
+<sup>4</sup> &emsp; **Character** type is denoted by keyword `char` and serves to represent a unicode character. Char type should have the same representation with Rust `char`.
 
 <sup>5</sup> &emsp; **Boolean** type is denoted by keyword `bool` and serves to represent a binary `true` or `false`. Boolean type should have the same representation with Rust `bool`.
 
 ### 4.3 &emsp; Builtin reference types &emsp; `[pr47.type.ref]`
 
-> TODO
->
-> <sup>1</sup> &emsp; **string** type
->
-> <sup>2</sup> &emsp; **vector** type
->
+<sup>1</sup> &emsp; **String** type is denoted by keyword `string` and serves to represent any UTF-8 text. String type should have the same representation with Rust `std::string::String`.
+
+<sup>2</sup> &emsp; **Vector** or **dynamic array** type is denoted by keyword `vector` and serves to represent a variable length array. `vector` is a generic container. See grammar and example.
+
+> grammar of vector type
+> 
+> ```plaintext
+>     vector-type ::= "vector" "<" type ">"
+> ```
+
+```go
+    var v vector<int> = new_vec();
+    v.push(1);      // now v = [1]
+    v.insert(0, 2); // now v = [2, 1]
+    v.push(2.5);    // ill-formed, v is an vector of int
+```
+
 > <sup>3</sup> &emsp; **object** type
 >
 > <sup>4</sup> &emsp; **any** type

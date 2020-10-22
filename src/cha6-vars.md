@@ -4,6 +4,8 @@
 
 ### 6.1 &emsp; Variable declaration &emsp; `[pr47.var.decl]`
 
+> grammer of variable declaration
+>
 > ```bnf
 > var-decl ::= "var" identifier var-decl-type var-opt-init
 >
