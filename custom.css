@@ -1,0 +1,25 @@
+html {
+    font-family: serif;
+    background-color: var(--bg);
+    text-size-adjust: none;
+}
+
+.hljs {
+    color: #3f3f3f;
+}
+
+.light {
+    --fg: #000000;
+    --sidebar-fg: #050505;
+    --inline-code-color: #3f3f3f;
+}
+
+.rust {
+    --fg: #000000;
+    --sidebar-fg: #050505;
+    --inline-code-color: #3f3f3f;
+}
+
+:root {
+    --content-max-width: 1200px;
+}

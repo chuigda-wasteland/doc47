@@ -1,0 +1,71 @@
+program ::= global-attrs attr-decls
+
+global-attrs ::= 
+      global-attrs global-attr
+    | ""
+
+attr-decls ::=
+      attr-decls attr-decl
+    | ""
+
+global-attr ::= "#![" attr-list "]"
+
+attr-decl ::=
+      attr decl
+    | decl
+
+attr ::= "#[" attr-list "]"
+
+decl ::= 
+      function-decl
+    | var-decl
+
+function-decl ::= "func" identifier "(" param-list ")" opt-type opt-func-body
+
+var-decl ::= "var" identifier var-decl-type var-opt-init
+
+var-decl-type ::=
+      type
+    | "deduced"
+    | ""
+
+var-opt-init ::=
+      "=" expr
+    | ""
+
+param-list ::= 
+      param-list "," param
+    | param
+    | ""
+
+param ::= identifier opt-type
+
+opt-func-body ::= 
+      ";"
+    | compound-stmt
+
+opt-type ::=
+      type
+    | ""
+
+attr-list ::= 
+      attr-list "," attr-body
+    | attr-body
+    | ""
+
+attr-body ::= 
+      single-id-attr
+    | single-value-attr
+    | kv-pair-attr
+    | call-like-attr
+
+single-id-attr    ::= identifier
+single-value-attr ::= attr-value
+kv-pair-attr      ::= identifier "=" attr-body
+call-like-attr    ::= identifier "("  attr-list ")"
+
+attr-value ::=
+      int-lit
+    | char-lit
+    | bool-lit
+    | str-lit
