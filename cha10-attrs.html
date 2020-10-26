@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>10. Attributes and compiler actions - Project-47 language documentation</title>
+        <title>10. Attributes - Project-47 language documentation</title>
         
         
 
@@ -97,7 +97,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="forewords.html">Forewords</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">Fundamental knowledges</li><li class="spacer"></li><li class="chapter-item expanded "><a href="cha1-terms-n-defs.html"><strong aria-hidden="true">1.</strong> Terms and definitions</a></li><li class="chapter-item expanded "><a href="cha2-lex-convs.html"><strong aria-hidden="true">2.</strong> Lexical conventions</a></li><li class="chapter-item expanded "><a href="cha3-prog-exec.html"><strong aria-hidden="true">3.</strong> Program execution</a></li><li class="chapter-item expanded affix "><li class="part-title">Entities and semantics</li><li class="spacer"></li><li class="chapter-item expanded "><a href="cha4-types.html"><strong aria-hidden="true">4.</strong> Types</a></li><li class="chapter-item expanded "><a href="cha5-id-scope.html"><strong aria-hidden="true">5.</strong> Identifiers and scopes</a></li><li class="chapter-item expanded "><a href="cha6-vars.html"><strong aria-hidden="true">6.</strong> Variables</a></li><li class="chapter-item expanded "><a href="cha7-funcs.html"><strong aria-hidden="true">7.</strong> Functions</a></li><li class="chapter-item expanded "><a href="cha8-exprs.html"><strong aria-hidden="true">8.</strong> Expressions</a></li><li class="chapter-item expanded "><a href="cha9-stmts.html"><strong aria-hidden="true">9.</strong> Statements</a></li><li class="chapter-item expanded "><a href="cha10-attrs.html" class="active"><strong aria-hidden="true">10.</strong> Attributes and compiler actions</a></li><li class="chapter-item expanded affix "><li class="part-title">Appendix</li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="app1-grammar.html">A. Grammar of Pr47</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">README</a></li><li class="chapter-item expanded affix "><a href="forewords.html">Forewords</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">Fundamental knowledges</li><li class="spacer"></li><li class="chapter-item expanded "><a href="cha1-terms-n-defs.html"><strong aria-hidden="true">1.</strong> Terms and definitions</a></li><li class="chapter-item expanded "><a href="cha2-lex-convs.html"><strong aria-hidden="true">2.</strong> Lexical conventions</a></li><li class="chapter-item expanded "><a href="cha3-prog-exec.html"><strong aria-hidden="true">3.</strong> Program execution</a></li><li class="chapter-item expanded affix "><li class="part-title">Entities and semantics</li><li class="spacer"></li><li class="chapter-item expanded "><a href="cha4-types.html"><strong aria-hidden="true">4.</strong> Types</a></li><li class="chapter-item expanded "><a href="cha5-id-scope.html"><strong aria-hidden="true">5.</strong> Identifiers and scopes</a></li><li class="chapter-item expanded "><a href="cha6-decls.html"><strong aria-hidden="true">6.</strong> Declarations</a></li><li class="chapter-item expanded "><a href="cha8-exprs.html"><strong aria-hidden="true">7.</strong> Expressions</a></li><li class="chapter-item expanded "><a href="cha9-stmts.html"><strong aria-hidden="true">8.</strong> Statements</a></li><li class="chapter-item expanded "><a href="cha10-attrs.html" class="active"><strong aria-hidden="true">9.</strong> Attributes</a></li><li class="chapter-item expanded affix "><li class="part-title">Appendix</li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="app1-grammar.html">A. Grammar of Pr47</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -165,7 +165,71 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h2><a class="header" href="#10-attributes-and-compiler-actions---pr47attr" id="10-attributes-and-compiler-actions---pr47attr">  10. Attributes and compiler actions   <code>[pr47.attr]</code></a></h2>
+                        <h2><a class="header" href="#10-attributes---pr47attr" id="10-attributes---pr47attr">  10. Attributes   <code>[pr47.attr]</code></a></h2>
+<p><sup>1</sup>   An attribute, by itself, does not have any semantics. Attributes are read by compiler actions who're able to transform the source program at syntax or semantic layer.</p>
+<blockquote>
+<p>grammar of global attributes</p>
+<pre><code class="language-plaintext">global-attrs ::= 
+       global-attrs global-attr
+     | &quot;&quot;
+
+global-attr ::= &quot;#![&quot; attr-list &quot;]&quot;
+</code></pre>
+</blockquote>
+<p><sup>2</sup>   Global attributes can be added to the commence of a Pr47 source file.</p>
+<blockquote>
+<p>grammar of attributed item</p>
+<pre><code class="language-plaintext">attr-decl ::=
+      attr decl
+    | decl
+
+attr-stmt ::=
+      attr stmt
+    | stmt
+
+attr ::= &quot;#[&quot; attr-list &quot;]&quot;
+</code></pre>
+</blockquote>
+<p><sup>3</sup>   Each declaration or statement in Pr47 may be prefixed with an attribute declarator.</p>
+<blockquote>
+<p>grammar of attribute</p>
+<pre><code class="language-plaintext">attr-list ::= 
+      attr-list &quot;,&quot; attr-body
+    | attr-body
+    | &quot;&quot;
+
+attr-body ::= 
+      single-id-attr
+    | single-value-attr
+    | kv-pair-attr
+
+single-id-attr ::= identifier
+kv-pair-attr   ::= identifier &quot;=&quot; attr-body
+call-like-attr ::= identifier &quot;(&quot;  attr-list &quot;)&quot;
+</code></pre>
+</blockquote>
+<p><sup>4</sup>   An attribute may be a single identifier attribute, a key-value like attribute or a function call like attribute.</p>
+<h3><a class="header" href="#101-compiler-actions---pr47attract" id="101-compiler-actions---pr47attract">  10.1 Compiler actions   <code>[pr47.attr.act]</code></a></h3>
+<p><sup>1</sup>   A compiler action is a Rust object consists of a name, an attribute <em>recognizer</em> and a series of transformation. A compiler action may be either an <em>early compiler action</em> that acts on syntactical layer, or a <em>late compiler action</em> that acts on semantical layer. Concrete representation and grammar of compiler actionares implementation defined.</p>
+<p><sup>2</sup>   Pr47 implementation matches the recognizer of compiler action and each attribute in <em>top level attribute list</em> in the following way:</p>
+<ul>
+<li>For single identifier attribute, the compiler action and attribute match if the identifier and recognizer match</li>
+<li>For key-value like attribute, the compiler action and attribute match if the key part of that attribute and recognizer match</li>
+<li>For function call like attribute, the compiler action and attribute match if the <em>function name part</em> of that attribute and recognizer match.</li>
+</ul>
+<p>  See example.</p>
+<pre><code class="language-go">#[force_static,    // attr1, may match with compiler action &quot;force_static&quot;
+  repr=&quot;C&quot;,        // attr2, may match with compiler action &quot;repr&quot;
+  proof(postulate) // attr3, may match with compiler action &quot;proof&quot;
+]
+func foo() {}
+</code></pre>
+<p><sup>3</sup>   Once a compiler action matches with an attribute, the attribute arguments (if present) together with the attributed item (the whole translation unit for global attributes) are then sent to the transformation code. See example.</p>
+<pre><code class="language-go">// Here, the attribut list [result, T, E], together with the function
+// itself &quot;func bar() {}&quot; are sent to compiler action &quot;error_chain&quot;
+#[error_chain(result, T, E)]
+func bar() {}
+</code></pre>
 
                     </main>
 

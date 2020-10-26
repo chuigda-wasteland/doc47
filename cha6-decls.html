@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>1. Terms and definitions - Project-47 language documentation</title>
+        <title>6. Declarations - Project-47 language documentation</title>
         
         
 
@@ -97,7 +97,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">README</a></li><li class="chapter-item expanded affix "><a href="forewords.html">Forewords</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">Fundamental knowledges</li><li class="spacer"></li><li class="chapter-item expanded "><a href="cha1-terms-n-defs.html" class="active"><strong aria-hidden="true">1.</strong> Terms and definitions</a></li><li class="chapter-item expanded "><a href="cha2-lex-convs.html"><strong aria-hidden="true">2.</strong> Lexical conventions</a></li><li class="chapter-item expanded "><a href="cha3-prog-exec.html"><strong aria-hidden="true">3.</strong> Program execution</a></li><li class="chapter-item expanded affix "><li class="part-title">Entities and semantics</li><li class="spacer"></li><li class="chapter-item expanded "><a href="cha4-types.html"><strong aria-hidden="true">4.</strong> Types</a></li><li class="chapter-item expanded "><a href="cha5-id-scope.html"><strong aria-hidden="true">5.</strong> Identifiers and scopes</a></li><li class="chapter-item expanded "><a href="cha6-decls.html"><strong aria-hidden="true">6.</strong> Declarations</a></li><li class="chapter-item expanded "><a href="cha8-exprs.html"><strong aria-hidden="true">7.</strong> Expressions</a></li><li class="chapter-item expanded "><a href="cha9-stmts.html"><strong aria-hidden="true">8.</strong> Statements</a></li><li class="chapter-item expanded "><a href="cha10-attrs.html"><strong aria-hidden="true">9.</strong> Attributes</a></li><li class="chapter-item expanded affix "><li class="part-title">Appendix</li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="app1-grammar.html">A. Grammar of Pr47</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">README</a></li><li class="chapter-item expanded affix "><a href="forewords.html">Forewords</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">Fundamental knowledges</li><li class="spacer"></li><li class="chapter-item expanded "><a href="cha1-terms-n-defs.html"><strong aria-hidden="true">1.</strong> Terms and definitions</a></li><li class="chapter-item expanded "><a href="cha2-lex-convs.html"><strong aria-hidden="true">2.</strong> Lexical conventions</a></li><li class="chapter-item expanded "><a href="cha3-prog-exec.html"><strong aria-hidden="true">3.</strong> Program execution</a></li><li class="chapter-item expanded affix "><li class="part-title">Entities and semantics</li><li class="spacer"></li><li class="chapter-item expanded "><a href="cha4-types.html"><strong aria-hidden="true">4.</strong> Types</a></li><li class="chapter-item expanded "><a href="cha5-id-scope.html"><strong aria-hidden="true">5.</strong> Identifiers and scopes</a></li><li class="chapter-item expanded "><a href="cha6-decls.html" class="active"><strong aria-hidden="true">6.</strong> Declarations</a></li><li class="chapter-item expanded "><a href="cha8-exprs.html"><strong aria-hidden="true">7.</strong> Expressions</a></li><li class="chapter-item expanded "><a href="cha9-stmts.html"><strong aria-hidden="true">8.</strong> Statements</a></li><li class="chapter-item expanded "><a href="cha10-attrs.html"><strong aria-hidden="true">9.</strong> Attributes</a></li><li class="chapter-item expanded affix "><li class="part-title">Appendix</li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="app1-grammar.html">A. Grammar of Pr47</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -165,29 +165,79 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h2><a class="header" href="#1---terms-and-definitions---pr47terms" id="1---terms-and-definitions---pr47terms">1.   Terms and definitions   <code>[pr47.terms]</code></a></h2>
-<ol>
-<li><strong>Registration time</strong>: (phrase) the Pr47 implementation import foreign types and foreign functions from Rust host environment.</li>
-<li><strong>Compile time</strong>: (phrase) the Pr47 implementation checks the program with certain static checking rules, and optionally transform source program into some optimized representation.</li>
-<li><strong>Run time</strong>: (phrase) the Pr47 implementation executes the program and yield results.</li>
-<li><strong>Well-formed</strong>: program does not violate Pr47 rules.</li>
-<li><strong>Ill-formed</strong>: program not well formed.</li>
-<li><strong>Reject</strong>: (compile time behavior) the Pr47 implementation refuses to run an ill-formed program, since it violates one or more piece of static rules.</li>
-<li><strong>Undefined behavior</strong>: (runtime hehavior) result of operation is not defined, and should not be relied on.</li>
-</ol>
+                        <h2><a class="header" href="#6---declarations---pr47decl" id="6---declarations---pr47decl">6.   Declarations   <code>[pr47.decl]</code></a></h2>
+<p><sup>1</sup>   A declaration may introduce a variable or function into a specific scope.</p>
+<h3><a class="header" href="#61---variable-declaration---pr47declvar" id="61---variable-declaration---pr47declvar">6.1   Variable declaration   <code>[pr47.decl.var]</code></a></h3>
+<blockquote>
+<p>grammer of variable declaration</p>
+<pre><code class="language-plaintext">var-decl ::= &quot;var&quot; identifier var-decl-type var-opt-init
+
+var-decl-type ::=
+      type
+    | &quot;deduced&quot;
+    | &quot;&quot;
+
+var-opt-init ::=
+      &quot;=&quot; expr
+    | &quot;&quot;
+</code></pre>
+</blockquote>
+<p><sup>1</sup>   A variable declaration introduces a variable to its scope. If a variable declaration occurs in a block, then then the variable is introduced to that block scope; otherwise to the global scope.</p>
+<p><sup>2</sup>   A typed variable declaration introduces a variable of specific type to scope. The introduced variable is called <em>typed variable</em>. A typed variable can only be assigned with object of that type. See exmple.</p>
+<pre><code class="language-go">var a int = 42; // a is of int type
+a = 5.56; // ill-formed, type mismatch
+var b int = 'д'; // ill-formed, type mismatch
+</code></pre>
+<p><sup>3</sup>   An untyped variable declaration introduces a variable of uncertain type to scope. The introduced variable is called <em>untyped variable</em>. An untyped variable can be assigned with object of any type. Concrete type of the object denoted by the variable may change as new object gets assigned to the variable. See example.</p>
+<pre><code class="language-go">var a = 54; // as is of int type now
+a = 'c'; // a is of char type now
+a = &quot;Здравствуйте&quot; // a is of string type now
+</code></pre>
+<p><sup>4</sup>   A variable can be declared with <code>deduced</code> type. Variables with deduced type are considered typed variables, whose type is automatically deduced from its initializer. Initializer evaluates to value <code>null</code> is ill formed.</p>
+<pre><code class="language-go">var a deduced = 5; // a deduced to be int
+var b deduced = &quot;привет&quot;; // b deduced to be string
+var c deduced = null; // ill-formed
+</code></pre>
+<h3><a class="header" href="#62---function-declaration---pr47declfunc" id="62---function-declaration---pr47declfunc">6.2   Function declaration   <code>[pr47.decl.func]</code></a></h3>
+<blockquote>
+<p>grammar of function declaration</p>
+<pre><code class="language-plaintext">function-decl ::= &quot;func&quot; identifier &quot;(&quot; param-list &quot;)&quot; opt-type opt-func-body
+
+opt-func-body ::= 
+      &quot;;&quot;
+    | compound-stmt
+
+opt-type ::=
+      type
+    | &quot;&quot;
+</code></pre>
+</blockquote>
+<p><sup>1</sup>   A function declaration may have an optional function body, a compound statement. A function declaration with a body is called a <em>function definition</em>. A function declaration without a body may serve an attribute provider.</p>
+<h3><a class="header" href="#621---function-parameters---pr47declfuncparm" id="621---function-parameters---pr47declfuncparm">6.2.1   Function parameters   <code>[pr47.decl.func.parm]</code></a></h3>
+<blockquote>
+<p>grammar of function parameter</p>
+<pre><code class="language-plaintext">param-list ::= 
+      param-list &quot;,&quot; param
+    | param
+    | &quot;&quot;
+
+param ::= identifier opt-type
+</code></pre>
+</blockquote>
+<p><sup>1</sup>   A function may optionally take a series of parameters. A function parameter may be explicitly marked with a type, such parameters are called </p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="forewords.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="cha5-id-scope.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="cha2-lex-convs.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="cha8-exprs.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -199,13 +249,13 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="forewords.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="cha5-id-scope.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a rel="next" href="cha2-lex-convs.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="cha8-exprs.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 

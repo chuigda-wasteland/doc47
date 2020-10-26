@@ -99,7 +99,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="forewords.html">Forewords</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">Fundamental knowledges</li><li class="spacer"></li><li class="chapter-item expanded "><a href="cha1-terms-n-defs.html"><strong aria-hidden="true">1.</strong> Terms and definitions</a></li><li class="chapter-item expanded "><a href="cha2-lex-convs.html"><strong aria-hidden="true">2.</strong> Lexical conventions</a></li><li class="chapter-item expanded "><a href="cha3-prog-exec.html"><strong aria-hidden="true">3.</strong> Program execution</a></li><li class="chapter-item expanded affix "><li class="part-title">Entities and semantics</li><li class="spacer"></li><li class="chapter-item expanded "><a href="cha4-types.html"><strong aria-hidden="true">4.</strong> Types</a></li><li class="chapter-item expanded "><a href="cha5-id-scope.html"><strong aria-hidden="true">5.</strong> Identifiers and scopes</a></li><li class="chapter-item expanded "><a href="cha6-vars.html"><strong aria-hidden="true">6.</strong> Variables</a></li><li class="chapter-item expanded "><a href="cha7-funcs.html"><strong aria-hidden="true">7.</strong> Functions</a></li><li class="chapter-item expanded "><a href="cha8-exprs.html"><strong aria-hidden="true">8.</strong> Expressions</a></li><li class="chapter-item expanded "><a href="cha9-stmts.html"><strong aria-hidden="true">9.</strong> Statements</a></li><li class="chapter-item expanded "><a href="cha10-attrs.html"><strong aria-hidden="true">10.</strong> Attributes and compiler actions</a></li><li class="chapter-item expanded affix "><li class="part-title">Appendix</li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="app1-grammar.html">A. Grammar of Pr47</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">README</a></li><li class="chapter-item expanded affix "><a href="forewords.html">Forewords</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">Fundamental knowledges</li><li class="spacer"></li><li class="chapter-item expanded "><a href="cha1-terms-n-defs.html"><strong aria-hidden="true">1.</strong> Terms and definitions</a></li><li class="chapter-item expanded "><a href="cha2-lex-convs.html"><strong aria-hidden="true">2.</strong> Lexical conventions</a></li><li class="chapter-item expanded "><a href="cha3-prog-exec.html"><strong aria-hidden="true">3.</strong> Program execution</a></li><li class="chapter-item expanded affix "><li class="part-title">Entities and semantics</li><li class="spacer"></li><li class="chapter-item expanded "><a href="cha4-types.html"><strong aria-hidden="true">4.</strong> Types</a></li><li class="chapter-item expanded "><a href="cha5-id-scope.html"><strong aria-hidden="true">5.</strong> Identifiers and scopes</a></li><li class="chapter-item expanded "><a href="cha6-decls.html"><strong aria-hidden="true">6.</strong> Declarations</a></li><li class="chapter-item expanded "><a href="cha8-exprs.html"><strong aria-hidden="true">7.</strong> Expressions</a></li><li class="chapter-item expanded "><a href="cha9-stmts.html"><strong aria-hidden="true">8.</strong> Statements</a></li><li class="chapter-item expanded "><a href="cha10-attrs.html"><strong aria-hidden="true">9.</strong> Attributes</a></li><li class="chapter-item expanded affix "><li class="part-title">Appendix</li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="app1-grammar.html">A. Grammar of Pr47</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -167,12 +167,15 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h2><a class="header" href="#introduction-to-the-pr47-programming-language" id="introduction-to-the-pr47-programming-language">Introduction to the Pr47 programming language</a></h2>
+                        <h1><a class="header" href="#doc47---documentation-for-project-47-series" id="doc47---documentation-for-project-47-series">DOC47 - Documentation for Project-47 series</a></h1>
+<p>S t a n d a r d   C o m m i t t e e   E m u l a t o r</p>
+<h2><a class="header" href="#introduction-to-the-pr47-programming-language" id="introduction-to-the-pr47-programming-language">Introduction to the Pr47 programming language</a></h2>
 <p><sup>1</sup>   <strong>Pr47 (47工程, Project-47, Проекта-47)</strong> is an extension language designed to support general procedural programming. Pr47 intends to be a powerful light-weight configuration language for Rust programs, while supporting seamless interaction with Rust environment.</p>
 <p><sup>2</sup>   Pr47 intends to be a strict language, any operation violating Pr47 rules should be rejected and error will be thrown to host environment, either at compile time or at run time. A Pr47 implementation may also implement an optional tolerant mode, within which some of erroneous operations are allowed, and other erroneous operations are skipped without interrupting program execution. However, operations resulting undefined behavior are never legal and shall be avoided with every effort.</p>
 <p><sup>3</sup>   This document is provided AS IS, WITHOUT ANY WARRANTY. If you find any bugs, typos or defects of this document, mail <a href="mailto://icey@icey.tech">ICEY(icey@icey.tech)</a>.</p>
 <h2><a class="header" href="#1---terms-and-definitions---pr47terms" id="1---terms-and-definitions---pr47terms">1.   Terms and definitions   <code>[pr47.terms]</code></a></h2>
 <ol>
+<li><strong>Registration time</strong>: (phrase) the Pr47 implementation import foreign types and foreign functions from Rust host environment.</li>
 <li><strong>Compile time</strong>: (phrase) the Pr47 implementation checks the program with certain static checking rules, and optionally transform source program into some optimized representation.</li>
 <li><strong>Run time</strong>: (phrase) the Pr47 implementation executes the program and yield results.</li>
 <li><strong>Well-formed</strong>: program does not violate Pr47 rules.</li>
@@ -186,16 +189,38 @@
 </blockquote>
 <h2><a class="header" href="#3---program-execution---pr47exec" id="3---program-execution---pr47exec">3.   Program execution   <code>[pr47.exec]</code></a></h2>
 <p><sup>1</sup>   Pr47 is a semi-static programming language, due to which it combines static or compile time checks with dynamic or runtime checks. A Pr47 program is firstly compiled with certain static rules, and then executed with dynamic rules applied.</p>
-<h3><a class="header" href="#31---pr47-foreign-function-interface---pr47execffi" id="31---pr47-foreign-function-interface---pr47execffi">3.1   Pr47 foreign function interface   <code>[pr47.exec.ffi]</code></a></h3>
-<p><sup>1</sup>   To compile and run a Pr47 program, foreign types and functions used by that program should be registered before the program gets compiled.</p>
-<h4><a class="header" href="#311---pr47-foreign-type-registration---pr47execffitype" id="311---pr47-foreign-type-registration---pr47execffitype">3.1.1   Pr47 foreign type registration   <code>[pr47.exec.ffi.type]</code></a></h4>
-<blockquote>
-<p>TODO</p>
-</blockquote>
-<h4><a class="header" href="#312---pr47-foreign-function-registration---pr47execffifunc" id="312---pr47-foreign-function-registration---pr47execffifunc">3.1.2   Pr47 foreign function registration   <code>[pr47.exec.ffi.func]</code></a></h4>
-<blockquote>
-<p>TODO</p>
-</blockquote>
+<h3><a class="header" href="#31---initialization---pr47execinit" id="31---initialization---pr47execinit">3.1   Initialization   <code>[pr47.exec.init]</code></a></h3>
+<p><sup>1</sup>   A Pr47 implementation may optionally have one or more initialization stages, which may initialize certain internal data and programs. Initialization, if present, should act like a normal Rust function or method.</p>
+<h3><a class="header" href="#32---pr47-foreign-type-registration---pr47execregtype" id="32---pr47-foreign-type-registration---pr47execregtype">3.2   Pr47 foreign type registration   <code>[pr47.exec.reg.type]</code></a></h3>
+<p><sup>1</sup>   A Pr47 implementation should provide an interface for registing foreign types, so that foreign functions and scripts can use them. Registing a Rust type mostly involves remembering the <code>std::any::TypeId</code> of that type, and associate it with an identifier in a specific scope.</p>
+<p><sup>2</sup>   The implementation must be able to register any <code>T: 'static</code>; The implementation may also optionally implement registration for <code>T: 'a</code>, where <code>'a</code> is the lifetime of Pr47 environment, with certain restrictions and assumptions.</p>
+<p><sup>3</sup>   Implementation should allow user to omit the identifier and scope for that registered type. When user choose to omit type name and scope, the implementation should use <code>std::any::type_name</code> to obtain an descriptional name for that type, and register that type to global scope.</p>
+<p><sup>4</sup>   Despite in the implementation part, registing a foreign type to <code>std</code> module or its submodule is ill-formed, and should be rejected at registration time.</p>
+<h3><a class="header" href="#33---pr47-foreign-function-registration---pr47execregfunc" id="33---pr47-foreign-function-registration---pr47execregfunc">3.3   Pr47 foreign function registration   <code>[pr47.exec.reg.func]</code></a></h3>
+<p><sup>1</sup>   A Pr47 implementation should provide an interface for registing foreign functions, so that scripts can use them. Registing a Rust function mostly involves remembering the function signature with assistance of <code>std::any::TypeId</code>, optionally creating a wrapper for that function and associate it with an identifier in a specific scope.</p>
+<p><sup>2</sup>   An implementation must be able to register any <code>Fn</code> whose parameter types and return type satisfies <code>T: static</code>. An implementation may also optionally implement registration for <code>Fn</code> whose parameter types and return type satisfies <code>T: 'a</code>, where <code>'a</code> is the lifetime of Pr47 environment, with certain restrictions and assumptions.</p>
+<p><sup>3</sup>   By default, a Pr47 implementation should transfer the ownership of argument to Rust host environment when calling a foreign function, take the ownership of return value from Rust host environment when the function returns.</p>
+<p><sup>4</sup>   For parameters satisfy <code>T: Copy</code>, a Pr47 implementation should make a copy of the argument.</p>
+<p><sup>5</sup>   For parameters with reference type <code>&amp;T</code>, a Pr47 implementation should share the argument immutably between the Pr47 environment and Rust host. For parameters with mutable reference type <code>&amp;mut T</code>, the implementation should share the argument mutably between the Pr47 environment and Rust host. Foreign functions require mutable share are considered unsafe by Pr47.</p>
+<p><sup>6</sup>   For parameters with type that satisfies <em>type fusion</em> rules, see <code>[pr47.type.fusion]</code>. </p>
+<p><sup>7</sup>   When receiving return values from Rust function, <code>&amp;std::option::Option&lt;T&gt;</code> should be converted to <code>std::option::Option&lt;&amp;T&gt;</code> using <code>std::option::Option::as_ref</code>, and <code>&amp;mut std::option::Option&lt;T&gt;</code> should be converted to <code>std::option::Option&lt;&amp;mut T&gt;</code> using <code>std::option::Option::as_mut</code>.</p>
+<h3><a class="header" href="#34---compilation---pr47execcomp" id="34---compilation---pr47execcomp">3.4   Compilation   <code>[pr47.exec.comp]</code></a></h3>
+<p><sup>1</sup>   After registing foreign types and functions, the Pr47 implementation should then read in the Pr47 scripts, enforce the static checking rules, and may optionally transform source codes into some optimized form. In a typical Pr47 implementation, the following steps may be taken in order.</p>
+<h4><a class="header" href="#341---lexical-analysis---pr47execcomplex" id="341---lexical-analysis---pr47execcomplex">3.4.1   Lexical analysis   <code>[pr47.exec.comp.lex]</code></a></h4>
+<h4><a class="header" href="#342---parsing---pr47execcompparse" id="342---parsing---pr47execcompparse">3.4.2   Parsing   <code>[pr47.exec.comp.parse]</code></a></h4>
+<h4><a class="header" href="#343---early-compiler-action-application---pr47execcompact1" id="343---early-compiler-action-application---pr47execcompact1">3.4.3   Early compiler action application   <code>[pr47.exec.comp.act1]</code></a></h4>
+<h4><a class="header" href="#344---semantics-analysis---pr47execcompsema" id="344---semantics-analysis---pr47execcompsema">3.4.4   Semantics analysis   <code>[pr47.exec.comp.sema]</code></a></h4>
+<h4><a class="header" href="#345---late-compiler-action-application---pr47execcompact2" id="345---late-compiler-action-application---pr47execcompact2">3.4.5   Late compiler action application   <code>[pr47.exec.comp.act2]</code></a></h4>
+<h4><a class="header" href="#346---transformation-or-code-generation---pr47execcompgen" id="346---transformation-or-code-generation---pr47execcompgen">3.4.6   Transformation or code generation   <code>[pr47.exec.comp.gen]</code></a></h4>
+<h3><a class="header" href="#35---function-export---pr47execexport" id="35---function-export---pr47execexport">3.5   Function export   <code>[pr47.exec.export]</code></a></h3>
+<p><sup>1</sup>   After compilation, the Pr47 implementation should be able to export functions to host environment. Detailed requirements on such functionality are similar to requirements stated in <code>[pr47.exec.reg.func]</code>.</p>
+<h3><a class="header" href="#36---program-execution---pr47execrun" id="36---program-execution---pr47execrun">3.6   Program execution   <code>[pr47.exec.run]</code></a></h3>
+<p><sup1>1</sup>   It is possible to launch a single Pr47 function via the exported function interface. It is also possible to treat the whole script as an executable, and start execution from function <code>main</code>, <code>entry</code> or <code>application_start</code>. Only one of <code>main</code>, <code>entry</code> and <code>application_start</code> may be declared to global scope, and must satisfy the following signature:</p>
+<pre><code class="language-go">func func_name() int
+</code></pre>
+<p>  or:</p>
+<pre><code class="language-go">func func_name(vector&lt;string&gt;) int
+</code></pre>
 <h2><a class="header" href="#4---types---pr47type" id="4---types---pr47type">4.   Types   <code>[pr47.type]</code></a></h2>
 <p><sup>1</sup>   Since Pr47 is semi-statically typed language, entities may be either statically type checked or dynamically type checked. A Pr47 implementation should use compile time information as much as possible to optimize program execution and provide better diagnostics.</p>
 <h3><a class="header" href="#41---type-classifications---pr47typeclass" id="41---type-classifications---pr47typeclass">4.1   Type classifications   <code>[pr47.type.class]</code></a></h3>
@@ -204,15 +229,25 @@
 <p><sup>1</sup>   <strong>Integer</strong> type is denoted by keyword <code>int</code> and serves to represent integral numbers. Integer type should have the same representation with Rust <code>i64</code>.</p>
 <p><sup>2</sup>   <strong>Float type</strong> is denoted by keyword <code>float</code> and serves to represent IEEE754 floating point numbers. Float type should have the same representation with Rust <code>f64</code>.</p>
 <p><sup>3</sup>   <strong>Byte</strong> type is denoted by keyword <code>byte</code> and serves to represent a single byte. Byte type should have the same representation with Rust <code>u8</code>.</p>
-<p><sup>4</sup>   <strong>Char</strong> type is denoted by keyword <code>char</code> and serves to represent a unicode character. Char type should have the same representation with Rust <code>char</code>.</p>
+<p><sup>4</sup>   <strong>Character</strong> type is denoted by keyword <code>char</code> and serves to represent a unicode character. Char type should have the same representation with Rust <code>char</code>.</p>
 <p><sup>5</sup>   <strong>Boolean</strong> type is denoted by keyword <code>bool</code> and serves to represent a binary <code>true</code> or <code>false</code>. Boolean type should have the same representation with Rust <code>bool</code>.</p>
 <h3><a class="header" href="#43---builtin-reference-types---pr47typeref" id="43---builtin-reference-types---pr47typeref">4.3   Builtin reference types   <code>[pr47.type.ref]</code></a></h3>
+<p><sup>1</sup>   <strong>String</strong> type is denoted by keyword <code>string</code> and serves to represent any UTF-8 text. String type should have the same representation with Rust <code>std::string::String</code>.</p>
+<p><sup>2</sup>   <strong>Vector</strong> or <strong>dynamic array</strong> type is denoted by keyword <code>vector</code> and serves to represent a variable length array. <code>vector</code> is a generic container. See grammar and example.</p>
 <blockquote>
-<p>TODO</p>
-<p><sup>1</sup>   <strong>string</strong> type</p>
-<p><sup>2</sup>   <strong>vector</strong> type</p>
-<p><sup>3</sup>   <strong>object</strong> type</p>
-<p><sup>4</sup>   <strong>any</strong> type</p>
+<p>grammar of vector type</p>
+<pre><code class="language-plaintext">    vector-type ::= &quot;vector&quot; &quot;&lt;&quot; type &quot;&gt;&quot;
+</code></pre>
+</blockquote>
+<pre><code class="language-go">    var v vector&lt;int&gt; = new_vec();
+    v.push(1);      // now v = [1]
+    v.insert(0, 2); // now v = [2, 1]
+    v.push(2.5);    // ill-formed, v is an vector of int
+</code></pre>
+<p><sup>3</sup>   The vector type should have a corresponding Rust representation, so that it can be used by Pr47 type fusion.</p>
+<blockquote>
+<p><sup>4</sup>   <strong>object</strong> type</p>
+<p><sup>5</sup>   <strong>any</strong> type</p>
 </blockquote>
 <h3><a class="header" href="#44---foreign-types---pr47typeforeign" id="44---foreign-types---pr47typeforeign">4.4   Foreign types   <code>[pr47.type.foreign]</code></a></h3>
 <blockquote>
@@ -298,11 +333,12 @@ func f2() {
 	global:v1.print(); // access global v1 using global: specifier
 }
 </code></pre>
-<h2><a class="header" href="#6---variables---pr47var" id="6---variables---pr47var">6.   Variables   <code>[pr47.var]</code></a></h2>
-<p><sup>1</sup>   A variable is a name bound to an object. A variable is introduced with a a variable declaration or function parameter declaration.</p>
-<h3><a class="header" href="#61---variable-declaration---pr47vardecl" id="61---variable-declaration---pr47vardecl">6.1   Variable declaration   <code>[pr47.var.decl]</code></a></h3>
+<h2><a class="header" href="#6---declarations---pr47decl" id="6---declarations---pr47decl">6.   Declarations   <code>[pr47.decl]</code></a></h2>
+<p><sup>1</sup>   A declaration may introduce a variable or function into a specific scope.</p>
+<h3><a class="header" href="#61---variable-declaration---pr47declvar" id="61---variable-declaration---pr47declvar">6.1   Variable declaration   <code>[pr47.decl.var]</code></a></h3>
 <blockquote>
-<pre><code class="language-bnf">var-decl ::= &quot;var&quot; identifier var-decl-type var-opt-init
+<p>grammer of variable declaration</p>
+<pre><code class="language-plaintext">var-decl ::= &quot;var&quot; identifier var-decl-type var-opt-init
 
 var-decl-type ::=
       type
@@ -330,11 +366,101 @@ a = &quot;Здравствуйте&quot; // a is of string type now
 var b deduced = &quot;привет&quot;; // b deduced to be string
 var c deduced = null; // ill-formed
 </code></pre>
-<h2><a class="header" href="#7-functions---pr47func" id="7-functions---pr47func">  7. Functions   <code>[pr47.func]</code></a></h2>
+<h3><a class="header" href="#62---function-declaration---pr47declfunc" id="62---function-declaration---pr47declfunc">6.2   Function declaration   <code>[pr47.decl.func]</code></a></h3>
+<blockquote>
+<p>grammar of function declaration</p>
+<pre><code class="language-plaintext">function-decl ::= &quot;func&quot; identifier &quot;(&quot; param-list &quot;)&quot; opt-type opt-func-body
+
+opt-func-body ::= 
+      &quot;;&quot;
+    | compound-stmt
+
+opt-type ::=
+      type
+    | &quot;&quot;
+</code></pre>
+</blockquote>
+<p><sup>1</sup>   A function declaration may have an optional function body, a compound statement. A function declaration with a body is called a <em>function definition</em>. A function declaration without a body may serve an attribute provider.</p>
+<h3><a class="header" href="#621---function-parameters---pr47declfuncparm" id="621---function-parameters---pr47declfuncparm">6.2.1   Function parameters   <code>[pr47.decl.func.parm]</code></a></h3>
+<blockquote>
+<p>grammar of function parameter</p>
+<pre><code class="language-plaintext">param-list ::= 
+      param-list &quot;,&quot; param
+    | param
+    | &quot;&quot;
+
+param ::= identifier opt-type
+</code></pre>
+</blockquote>
+<p><sup>1</sup>   A function may optionally take a series of parameters. A function parameter may be explicitly marked with a type, such parameters are called </p>
 <h2><a class="header" href="#8-expressions---pr47expr" id="8-expressions---pr47expr">  8. Expressions   <code>[pr47.expr]</code></a></h2>
 <h2><a class="header" href="#9-statements---pr47stmt" id="9-statements---pr47stmt">  9. Statements   <code>[pr47.stmt]</code></a></h2>
-<h2><a class="header" href="#10-attributes-and-compiler-actions---pr47attr" id="10-attributes-and-compiler-actions---pr47attr">  10. Attributes and compiler actions   <code>[pr47.attr]</code></a></h2>
-<h1><a class="header" href="#a-full-grammer-of-pr47" id="a-full-grammer-of-pr47">A. full grammer of Pr47</a></h1>
+<h2><a class="header" href="#10-attributes---pr47attr" id="10-attributes---pr47attr">  10. Attributes   <code>[pr47.attr]</code></a></h2>
+<p><sup>1</sup>   An attribute, by itself, does not have any semantics. Attributes are read by compiler actions who're able to transform the source program at syntax or semantic layer.</p>
+<blockquote>
+<p>grammar of global attributes</p>
+<pre><code class="language-plaintext">global-attrs ::= 
+       global-attrs global-attr
+     | &quot;&quot;
+
+global-attr ::= &quot;#![&quot; attr-list &quot;]&quot;
+</code></pre>
+</blockquote>
+<p><sup>2</sup>   Global attributes can be added to the commence of a Pr47 source file.</p>
+<blockquote>
+<p>grammar of attributed item</p>
+<pre><code class="language-plaintext">attr-decl ::=
+      attr decl
+    | decl
+
+attr-stmt ::=
+      attr stmt
+    | stmt
+
+attr ::= &quot;#[&quot; attr-list &quot;]&quot;
+</code></pre>
+</blockquote>
+<p><sup>3</sup>   Each declaration or statement in Pr47 may be prefixed with an attribute declarator.</p>
+<blockquote>
+<p>grammar of attribute</p>
+<pre><code class="language-plaintext">attr-list ::= 
+      attr-list &quot;,&quot; attr-body
+    | attr-body
+    | &quot;&quot;
+
+attr-body ::= 
+      single-id-attr
+    | single-value-attr
+    | kv-pair-attr
+
+single-id-attr ::= identifier
+kv-pair-attr   ::= identifier &quot;=&quot; attr-body
+call-like-attr ::= identifier &quot;(&quot;  attr-list &quot;)&quot;
+</code></pre>
+</blockquote>
+<p><sup>4</sup>   An attribute may be a single identifier attribute, a key-value like attribute or a function call like attribute.</p>
+<h3><a class="header" href="#101-compiler-actions---pr47attract" id="101-compiler-actions---pr47attract">  10.1 Compiler actions   <code>[pr47.attr.act]</code></a></h3>
+<p><sup>1</sup>   A compiler action is a Rust object consists of a name, an attribute <em>recognizer</em> and a series of transformation. A compiler action may be either an <em>early compiler action</em> that acts on syntactical layer, or a <em>late compiler action</em> that acts on semantical layer. Concrete representation and grammar of compiler actionares implementation defined.</p>
+<p><sup>2</sup>   Pr47 implementation matches the recognizer of compiler action and each attribute in <em>top level attribute list</em> in the following way:</p>
+<ul>
+<li>For single identifier attribute, the compiler action and attribute match if the identifier and recognizer match</li>
+<li>For key-value like attribute, the compiler action and attribute match if the key part of that attribute and recognizer match</li>
+<li>For function call like attribute, the compiler action and attribute match if the <em>function name part</em> of that attribute and recognizer match.</li>
+</ul>
+<p>  See example.</p>
+<pre><code class="language-go">#[force_static,    // attr1, may match with compiler action &quot;force_static&quot;
+  repr=&quot;C&quot;,        // attr2, may match with compiler action &quot;repr&quot;
+  proof(postulate) // attr3, may match with compiler action &quot;proof&quot;
+]
+func foo() {}
+</code></pre>
+<p><sup>3</sup>   Once a compiler action matches with an attribute, the attribute arguments (if present) together with the attributed item (the whole translation unit for global attributes) are then sent to the transformation code. See example.</p>
+<pre><code class="language-go">// Here, the attribut list [result, T, E], together with the function
+// itself &quot;func bar() {}&quot; are sent to compiler action &quot;error_chain&quot;
+#[error_chain(result, T, E)]
+func bar() {}
+</code></pre>
+<h2><a class="header" href="#a-full-grammer-of-pr47" id="a-full-grammer-of-pr47">A. full grammer of Pr47</a></h2>
 <pre><code class="language-plaintext">program ::= global-attrs attr-decls
 
 global-attrs ::= 
@@ -397,7 +523,6 @@ attr-body ::=
     | call-like-attr
 
 single-id-attr    ::= identifier
-single-value-attr ::= attr-value
 kv-pair-attr      ::= identifier &quot;=&quot; attr-body
 call-like-attr    ::= identifier &quot;(&quot;  attr-list &quot;)&quot;
 

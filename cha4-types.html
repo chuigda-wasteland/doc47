@@ -97,7 +97,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="forewords.html">Forewords</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">Fundamental knowledges</li><li class="spacer"></li><li class="chapter-item expanded "><a href="cha1-terms-n-defs.html"><strong aria-hidden="true">1.</strong> Terms and definitions</a></li><li class="chapter-item expanded "><a href="cha2-lex-convs.html"><strong aria-hidden="true">2.</strong> Lexical conventions</a></li><li class="chapter-item expanded "><a href="cha3-prog-exec.html"><strong aria-hidden="true">3.</strong> Program execution</a></li><li class="chapter-item expanded affix "><li class="part-title">Entities and semantics</li><li class="spacer"></li><li class="chapter-item expanded "><a href="cha4-types.html" class="active"><strong aria-hidden="true">4.</strong> Types</a></li><li class="chapter-item expanded "><a href="cha5-id-scope.html"><strong aria-hidden="true">5.</strong> Identifiers and scopes</a></li><li class="chapter-item expanded "><a href="cha6-vars.html"><strong aria-hidden="true">6.</strong> Variables</a></li><li class="chapter-item expanded "><a href="cha7-funcs.html"><strong aria-hidden="true">7.</strong> Functions</a></li><li class="chapter-item expanded "><a href="cha8-exprs.html"><strong aria-hidden="true">8.</strong> Expressions</a></li><li class="chapter-item expanded "><a href="cha9-stmts.html"><strong aria-hidden="true">9.</strong> Statements</a></li><li class="chapter-item expanded "><a href="cha10-attrs.html"><strong aria-hidden="true">10.</strong> Attributes and compiler actions</a></li><li class="chapter-item expanded affix "><li class="part-title">Appendix</li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="app1-grammar.html">A. Grammar of Pr47</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">README</a></li><li class="chapter-item expanded affix "><a href="forewords.html">Forewords</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">Fundamental knowledges</li><li class="spacer"></li><li class="chapter-item expanded "><a href="cha1-terms-n-defs.html"><strong aria-hidden="true">1.</strong> Terms and definitions</a></li><li class="chapter-item expanded "><a href="cha2-lex-convs.html"><strong aria-hidden="true">2.</strong> Lexical conventions</a></li><li class="chapter-item expanded "><a href="cha3-prog-exec.html"><strong aria-hidden="true">3.</strong> Program execution</a></li><li class="chapter-item expanded affix "><li class="part-title">Entities and semantics</li><li class="spacer"></li><li class="chapter-item expanded "><a href="cha4-types.html" class="active"><strong aria-hidden="true">4.</strong> Types</a></li><li class="chapter-item expanded "><a href="cha5-id-scope.html"><strong aria-hidden="true">5.</strong> Identifiers and scopes</a></li><li class="chapter-item expanded "><a href="cha6-decls.html"><strong aria-hidden="true">6.</strong> Declarations</a></li><li class="chapter-item expanded "><a href="cha8-exprs.html"><strong aria-hidden="true">7.</strong> Expressions</a></li><li class="chapter-item expanded "><a href="cha9-stmts.html"><strong aria-hidden="true">8.</strong> Statements</a></li><li class="chapter-item expanded "><a href="cha10-attrs.html"><strong aria-hidden="true">9.</strong> Attributes</a></li><li class="chapter-item expanded affix "><li class="part-title">Appendix</li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="app1-grammar.html">A. Grammar of Pr47</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -173,15 +173,25 @@
 <p><sup>1</sup>   <strong>Integer</strong> type is denoted by keyword <code>int</code> and serves to represent integral numbers. Integer type should have the same representation with Rust <code>i64</code>.</p>
 <p><sup>2</sup>   <strong>Float type</strong> is denoted by keyword <code>float</code> and serves to represent IEEE754 floating point numbers. Float type should have the same representation with Rust <code>f64</code>.</p>
 <p><sup>3</sup>   <strong>Byte</strong> type is denoted by keyword <code>byte</code> and serves to represent a single byte. Byte type should have the same representation with Rust <code>u8</code>.</p>
-<p><sup>4</sup>   <strong>Char</strong> type is denoted by keyword <code>char</code> and serves to represent a unicode character. Char type should have the same representation with Rust <code>char</code>.</p>
+<p><sup>4</sup>   <strong>Character</strong> type is denoted by keyword <code>char</code> and serves to represent a unicode character. Char type should have the same representation with Rust <code>char</code>.</p>
 <p><sup>5</sup>   <strong>Boolean</strong> type is denoted by keyword <code>bool</code> and serves to represent a binary <code>true</code> or <code>false</code>. Boolean type should have the same representation with Rust <code>bool</code>.</p>
 <h3><a class="header" href="#43---builtin-reference-types---pr47typeref" id="43---builtin-reference-types---pr47typeref">4.3   Builtin reference types   <code>[pr47.type.ref]</code></a></h3>
+<p><sup>1</sup>   <strong>String</strong> type is denoted by keyword <code>string</code> and serves to represent any UTF-8 text. String type should have the same representation with Rust <code>std::string::String</code>.</p>
+<p><sup>2</sup>   <strong>Vector</strong> or <strong>dynamic array</strong> type is denoted by keyword <code>vector</code> and serves to represent a variable length array. <code>vector</code> is a generic container. See grammar and example.</p>
 <blockquote>
-<p>TODO</p>
-<p><sup>1</sup>   <strong>string</strong> type</p>
-<p><sup>2</sup>   <strong>vector</strong> type</p>
-<p><sup>3</sup>   <strong>object</strong> type</p>
-<p><sup>4</sup>   <strong>any</strong> type</p>
+<p>grammar of vector type</p>
+<pre><code class="language-plaintext">    vector-type ::= &quot;vector&quot; &quot;&lt;&quot; type &quot;&gt;&quot;
+</code></pre>
+</blockquote>
+<pre><code class="language-go">    var v vector&lt;int&gt; = new_vec();
+    v.push(1);      // now v = [1]
+    v.insert(0, 2); // now v = [2, 1]
+    v.push(2.5);    // ill-formed, v is an vector of int
+</code></pre>
+<p><sup>3</sup>   The vector type should have a corresponding Rust representation, so that it can be used by Pr47 type fusion.</p>
+<blockquote>
+<p><sup>4</sup>   <strong>object</strong> type</p>
+<p><sup>5</sup>   <strong>any</strong> type</p>
 </blockquote>
 <h3><a class="header" href="#44---foreign-types---pr47typeforeign" id="44---foreign-types---pr47typeforeign">4.4   Foreign types   <code>[pr47.type.foreign]</code></a></h3>
 <blockquote>

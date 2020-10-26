@@ -60,7 +60,6 @@ attr-body ::=
     | call-like-attr
 
 single-id-attr    ::= identifier
-single-value-attr ::= attr-value
 kv-pair-attr      ::= identifier "=" attr-body
 call-like-attr    ::= identifier "("  attr-list ")"
 
