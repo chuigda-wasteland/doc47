@@ -37,9 +37,11 @@
     v.push(2.5);    // ill-formed, v is an vector of int
 ```
 
-> <sup>3</sup> &emsp; **object** type
+<sup>3</sup> &emsp; The vector type should have a corresponding Rust representation, so that it can be used by Pr47 type fusion.
+
+> <sup>4</sup> &emsp; **object** type
 >
-> <sup>4</sup> &emsp; **any** type
+> <sup>5</sup> &emsp; **any** type
 
 ### 4.4 &emsp; Foreign types &emsp; `[pr47.type.foreign]`
 
