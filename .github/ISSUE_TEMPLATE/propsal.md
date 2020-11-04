@@ -1,6 +1,6 @@
 ---
 name: Propsal
-about: Suggest an idea for this project
+about: Suggest an language feature for the Pr47 language
 title: 'P0XXX: '
 labels: Proposal
 assignees: ICEYSELF
