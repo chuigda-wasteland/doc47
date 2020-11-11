@@ -7,11 +7,15 @@ assignees: ICEYSELF
 
 ---
 
-**Describe the issue**
+## Describe the issue
 A clear and concise description of what the bug is.
 
-**Suggested fix**
+------
+
+## Suggested fix
 Possible ways to fix the bug.
 
-**See also**
-A clear and concise description of what you expected to happen.
+------
+
+## See also
+External references

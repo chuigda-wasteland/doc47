@@ -7,11 +7,20 @@ assignees: ''
 
 ---
 
-**Problem space**
+## Problem space
 A clear and concise description of what the problem that the idea serves to solve is.
 
-**Current workarounds**
+------
+
+## Current workarounds
 A clear and concise description of any workarounds.
 
-**Desired solution**
+------
+
+## Desired solution
 A clear and concise description of what you want to happen.
+
+------
+
+## See also
+External references
