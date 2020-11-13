@@ -1,7 +1,7 @@
 ---
-name: Bug report
-about: Create a bug report about language design or documentational issue
-title: B0XXX
+name: Defect report
+about: Create a defect report about language design or documentation
+title: DR0XXX
 labels: Bug
 assignees: ICEYSELF
 
