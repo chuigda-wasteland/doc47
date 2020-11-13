@@ -1,0 +1,15 @@
+0. This is the repo for documentation, not implementation. Go to Pr47/T10
+   if you're going to contribute for the implementation.
+
+1. Behave like C++ standard committee
+
+2. Write documentation like C++ standard
+
+3. Use Defect Report (DR) when you finds a critical problem of the language
+   or the documentation.
+
+4. Use Proposal (P) when you are ready to refine the language or the 
+   documentation.
+
+5. Use Idea (I) when you have some idea or question. That is also appropriate
+   for discussing pre-proposals.
