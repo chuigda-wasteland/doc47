@@ -1,0 +1,118 @@
+// Line comment
+/* Block comment */
+
+// module level attribute
+#![allow(dead_code, unused_variables)]
+
+// Untyped function
+func example() {
+    // Untyped variable
+    var a = 5;
+    // Ok
+    a = "5";
+
+    // Typed variable
+    var b int = 42;
+    // Compile time error
+    // b = "42";
+
+    // Deduced type
+    var c deduced = "Ленинград";
+    // Ok
+    c = "Leningrad";
+    // Compile time error
+    // c = 'Б';
+
+    // Vectors
+    var v vector<int> = vector(1, 2);
+
+    // Nested function
+    func insert_twice(vec vector<any>, value any) {
+        // Fake OOP
+        vec.insert(value)
+        insert(vec, value)
+    }
+    insert_twice(v, 5);
+
+    // Objects
+    var obj object = object();
+    // Create field if not exist, update if exists
+    obj.a = 5;
+    // Safe to create loops
+    obj.b = obj;
+}
+
+// Typed function
+func sum_of_abs(a int, b int) int {
+    // Declare function in any order, no need of forward declaration
+    return abs(a) + abs(b);
+}
+
+// Untyped function
+func abs(number) {
+    if number < 0 {
+        return -number;
+    } else {
+        return number;
+    }
+}
+
+// Function overloading
+func sum_of_abs(a float, b float) float {
+    return abs(a) + abs(b);
+}
+
+// An example of attribute. `force_static` is a builtin compiler action, which
+// will check the annotated part of program, and reject any dynamic part
+#[force_static]
+func static_sum_of_abs(a int, b float) float {
+    var c float = float(a);
+    // This will be rejected by the compiler action
+    // var c = float(a);
+    // allow dynamic methods explicitly
+    #[dynamic] return abs(b) + abs(c);
+}
+
+// Another example of more complex attribute
+#[proof(
+    postulate=false,
+    var_type(a=Nat, b=Nat, ab=Plus(a, b), ba=Plus(b, a)),
+    ret_type(Equal(ab, ba))
+)]
+func proof_comm(a, b, c, ab, ba) {
+    #[proof(match(
+    // ...
+    ))]
+    var dummy = null
+}
+
+// importing items from standard library
+import std.int.parse_int;
+import std.io.printf;
+import std.io.eprint;
+
+// global function with name "main", "start" or "application_start" will be
+// considered entrance.
+// entrace may take a vector<string> parameter, and may optionally return an
+// int value
+//
+// args: [<pr47 executable name> <script name> <arg1> <arg2> ...]
+// <pr47 executable name> will be null if this script is directly invoked from
+// Rust, or executable name not supported by host operating system.
+//
+// <script name> will be null if this script is directly invoked from Rust.
+func application_start(args vector<string>) int {
+    if args.len() < 4 {
+        printf("At least 4 arguments required, got {}\n", args.len());
+        return -1;
+    }
+    try {
+        var v1 int = args[2].parse_int();
+        var v2 int = args[3].parse_int();
+        printf("{} + {} = {}\n", v1, v2, v1 + v2);
+        return 0;
+    } catch (e error) {
+        eprint(e);
+        return -1;
+    }
+}
