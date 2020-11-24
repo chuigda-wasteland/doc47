@@ -1,8 +1,8 @@
-## 6. &emsp; Declarations &emsp; `[pr47.decl]`
+## 7. &emsp; Declarations &emsp; `[pr47.decl]`
 
 <sup>1</sup> &emsp; A declaration may introduce a variable or function into a specific scope.
 
-### 6.1 &emsp; Variable declaration &emsp; `[pr47.decl.var]`
+### 7.1 &emsp; Variable declaration &emsp; `[pr47.decl.var]`
 
 > grammer of variable declaration
 >
@@ -32,7 +32,7 @@ var b int = 'д'; // ill-formed, type mismatch
 <sup>3</sup> &emsp; An untyped variable declaration introduces a variable of uncertain type to scope. The introduced variable is called *untyped variable*. An untyped variable can be assigned with object of any type. Concrete type of the object denoted by the variable may change as new object gets assigned to the variable. See example.
 
 ```go
-var a = 54; // as is of int type now
+var a = 54; // a is of int type now
 a = 'c'; // a is of char type now
 a = "Здравствуйте" // a is of string type now
 ```
@@ -45,7 +45,7 @@ var b deduced = "привет"; // b deduced to be string
 var c deduced = null; // ill-formed
 ```
 
-### 6.2 &emsp; Function declaration &emsp; `[pr47.decl.func]`
+### 7.2 &emsp; Function declaration &emsp; `[pr47.decl.func]`
 
 > grammar of function declaration
 > 
@@ -63,7 +63,7 @@ var c deduced = null; // ill-formed
 
 <sup>1</sup> &emsp; A function declaration may have an optional function body, a compound statement. A function declaration with a body is called a *function definition*. A function declaration without a body may serve an attribute provider.
 
-### 6.2.1 &emsp; Function parameters &emsp; `[pr47.decl.func.parm]`
+### 7.2.1 &emsp; Function parameters &emsp; `[pr47.decl.func.parm]`
 
 > grammar of function parameter
 >
@@ -76,4 +76,4 @@ var c deduced = null; // ill-formed
 > param ::= identifier opt-type
 > ```
 
-<sup>1</sup> &emsp; A function may optionally take a series of parameters. A function parameter may be explicitly marked with a type, such parameters are called 
+<sup>1</sup> &emsp; A function may optionally take a series of parameters. A function parameter may be explicitly marked with a type, such parameters are called *typed parameters*. Parameters that are not a typed parameters are called *untyped parameters*.

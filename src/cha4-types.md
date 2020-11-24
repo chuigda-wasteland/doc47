@@ -47,6 +47,6 @@
 
 > TODO
 
-### 4.5 &emsp; Type fusing &emsp; `[pr47.type.fusion]`
+### 4.5 &emsp; Type fusion &emsp; `[pr47.type.fusion]`
 
 > TODO
