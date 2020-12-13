@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>6. Variables - Project-47 language documentation</title>
+        <title>7. Declarations - Project-47 language documentation</title>
         
         
 
@@ -97,7 +97,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="forewords.html">Forewords</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">Fundamental knowledges</li><li class="spacer"></li><li class="chapter-item expanded "><a href="cha1-terms-n-defs.html"><strong aria-hidden="true">1.</strong> Terms and definitions</a></li><li class="chapter-item expanded "><a href="cha2-lex-convs.html"><strong aria-hidden="true">2.</strong> Lexical conventions</a></li><li class="chapter-item expanded "><a href="cha3-prog-exec.html"><strong aria-hidden="true">3.</strong> Program execution</a></li><li class="chapter-item expanded affix "><li class="part-title">Entities and semantics</li><li class="spacer"></li><li class="chapter-item expanded "><a href="cha4-types.html"><strong aria-hidden="true">4.</strong> Types</a></li><li class="chapter-item expanded "><a href="cha5-id-scope.html"><strong aria-hidden="true">5.</strong> Identifiers and scopes</a></li><li class="chapter-item expanded "><a href="cha6-vars.html" class="active"><strong aria-hidden="true">6.</strong> Variables</a></li><li class="chapter-item expanded "><a href="cha7-funcs.html"><strong aria-hidden="true">7.</strong> Functions</a></li><li class="chapter-item expanded "><a href="cha8-exprs.html"><strong aria-hidden="true">8.</strong> Expressions</a></li><li class="chapter-item expanded "><a href="cha9-stmts.html"><strong aria-hidden="true">9.</strong> Statements</a></li><li class="chapter-item expanded "><a href="cha10-attrs.html"><strong aria-hidden="true">10.</strong> Attributes and compiler actions</a></li><li class="chapter-item expanded affix "><li class="part-title">Appendix</li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="app1-grammar.html">A. Grammar of Pr47</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">README</a></li><li class="chapter-item expanded affix "><a href="forewords.html">Forewords</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">Fundamental knowledges</li><li class="spacer"></li><li class="chapter-item expanded "><a href="cha1-terms-n-defs.html"><strong aria-hidden="true">1.</strong> Terms and definitions</a></li><li class="chapter-item expanded "><a href="cha2-lex-convs.html"><strong aria-hidden="true">2.</strong> Lexical conventions</a></li><li class="chapter-item expanded "><a href="cha3-prog-exec.html"><strong aria-hidden="true">3.</strong> Program execution</a></li><li class="chapter-item expanded affix "><li class="part-title">Entities and semantics</li><li class="spacer"></li><li class="chapter-item expanded "><a href="cha4-types.html"><strong aria-hidden="true">4.</strong> Types</a></li><li class="chapter-item expanded "><a href="cha5-id-scope.html"><strong aria-hidden="true">5.</strong> Identifiers and scopes</a></li><li class="chapter-item expanded "><a href="cha6-ffi.html"><strong aria-hidden="true">6.</strong> Foreign function interface</a></li><li class="chapter-item expanded "><a href="cha7-decls.html" class="active"><strong aria-hidden="true">7.</strong> Declarations</a></li><li class="chapter-item expanded "><a href="cha8-exprs.html"><strong aria-hidden="true">8.</strong> Expressions</a></li><li class="chapter-item expanded "><a href="cha9-stmts.html"><strong aria-hidden="true">9.</strong> Statements</a></li><li class="chapter-item expanded "><a href="cha10-attrs.html"><strong aria-hidden="true">10.</strong> Attributes</a></li><li class="chapter-item expanded affix "><li class="part-title">Appendix</li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="app1-grammar.html">A. Grammar of Pr47</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -165,11 +165,12 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h2><a class="header" href="#6---variables---pr47var" id="6---variables---pr47var">6.   Variables   <code>[pr47.var]</code></a></h2>
-<p><sup>1</sup>   A variable is a name bound to an object. A variable is introduced with a a variable declaration or function parameter declaration.</p>
-<h3><a class="header" href="#61---variable-declaration---pr47vardecl" id="61---variable-declaration---pr47vardecl">6.1   Variable declaration   <code>[pr47.var.decl]</code></a></h3>
+                        <h2><a class="header" href="#7---declarations---pr47decl" id="7---declarations---pr47decl">7.   Declarations   <code>[pr47.decl]</code></a></h2>
+<p><sup>1</sup>   A declaration may introduce a variable or function into a specific scope.</p>
+<h3><a class="header" href="#71---variable-declaration---pr47declvar" id="71---variable-declaration---pr47declvar">7.1   Variable declaration   <code>[pr47.decl.var]</code></a></h3>
 <blockquote>
-<pre><code class="language-bnf">var-decl ::= &quot;var&quot; identifier var-decl-type var-opt-init
+<p>grammer of variable declaration</p>
+<pre><code class="language-plaintext">var-decl ::= &quot;var&quot; identifier var-decl-type var-opt-init
 
 var-decl-type ::=
       type
@@ -188,7 +189,7 @@ a = 5.56; // ill-formed, type mismatch
 var b int = 'д'; // ill-formed, type mismatch
 </code></pre>
 <p><sup>3</sup>   An untyped variable declaration introduces a variable of uncertain type to scope. The introduced variable is called <em>untyped variable</em>. An untyped variable can be assigned with object of any type. Concrete type of the object denoted by the variable may change as new object gets assigned to the variable. See example.</p>
-<pre><code class="language-go">var a = 54; // as is of int type now
+<pre><code class="language-go">var a = 54; // a is of int type now
 a = 'c'; // a is of char type now
 a = &quot;Здравствуйте&quot; // a is of string type now
 </code></pre>
@@ -197,19 +198,46 @@ a = &quot;Здравствуйте&quot; // a is of string type now
 var b deduced = &quot;привет&quot;; // b deduced to be string
 var c deduced = null; // ill-formed
 </code></pre>
+<h3><a class="header" href="#72---function-declaration---pr47declfunc" id="72---function-declaration---pr47declfunc">7.2   Function declaration   <code>[pr47.decl.func]</code></a></h3>
+<blockquote>
+<p>grammar of function declaration</p>
+<pre><code class="language-plaintext">function-decl ::= &quot;func&quot; identifier &quot;(&quot; param-list &quot;)&quot; opt-type opt-func-body
+
+opt-func-body ::= 
+      &quot;;&quot;
+    | compound-stmt
+
+opt-type ::=
+      type
+    | &quot;&quot;
+</code></pre>
+</blockquote>
+<p><sup>1</sup>   A function declaration may have an optional function body, a compound statement. A function declaration with a body is called a <em>function definition</em>. A function declaration without a body may serve an attribute provider.</p>
+<h3><a class="header" href="#721---function-parameters---pr47declfuncparm" id="721---function-parameters---pr47declfuncparm">7.2.1   Function parameters   <code>[pr47.decl.func.parm]</code></a></h3>
+<blockquote>
+<p>grammar of function parameter</p>
+<pre><code class="language-plaintext">param-list ::= 
+      param-list &quot;,&quot; param
+    | param
+    | &quot;&quot;
+
+param ::= identifier opt-type
+</code></pre>
+</blockquote>
+<p><sup>1</sup>   A function may optionally take a series of parameters. A function parameter may be explicitly marked with a type, such parameters are called <em>typed parameters</em>. Parameters that are not a typed parameters are called <em>untyped parameters</em>.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="cha5-id-scope.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="cha6-ffi.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="cha7-funcs.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="cha8-exprs.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -221,13 +249,13 @@ var c deduced = null; // ill-formed
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="cha5-id-scope.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="cha6-ffi.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a rel="next" href="cha7-funcs.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="cha8-exprs.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 

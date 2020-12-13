@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>7. Functions - Project-47 language documentation</title>
+        <title>6. Foreign function interface - Project-47 language documentation</title>
         
         
 
@@ -97,7 +97,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="forewords.html">Forewords</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">Fundamental knowledges</li><li class="spacer"></li><li class="chapter-item expanded "><a href="cha1-terms-n-defs.html"><strong aria-hidden="true">1.</strong> Terms and definitions</a></li><li class="chapter-item expanded "><a href="cha2-lex-convs.html"><strong aria-hidden="true">2.</strong> Lexical conventions</a></li><li class="chapter-item expanded "><a href="cha3-prog-exec.html"><strong aria-hidden="true">3.</strong> Program execution</a></li><li class="chapter-item expanded affix "><li class="part-title">Entities and semantics</li><li class="spacer"></li><li class="chapter-item expanded "><a href="cha4-types.html"><strong aria-hidden="true">4.</strong> Types</a></li><li class="chapter-item expanded "><a href="cha5-id-scope.html"><strong aria-hidden="true">5.</strong> Identifiers and scopes</a></li><li class="chapter-item expanded "><a href="cha6-vars.html"><strong aria-hidden="true">6.</strong> Variables</a></li><li class="chapter-item expanded "><a href="cha7-funcs.html" class="active"><strong aria-hidden="true">7.</strong> Functions</a></li><li class="chapter-item expanded "><a href="cha8-exprs.html"><strong aria-hidden="true">8.</strong> Expressions</a></li><li class="chapter-item expanded "><a href="cha9-stmts.html"><strong aria-hidden="true">9.</strong> Statements</a></li><li class="chapter-item expanded "><a href="cha10-attrs.html"><strong aria-hidden="true">10.</strong> Attributes and compiler actions</a></li><li class="chapter-item expanded affix "><li class="part-title">Appendix</li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="app1-grammar.html">A. Grammar of Pr47</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">README</a></li><li class="chapter-item expanded affix "><a href="forewords.html">Forewords</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">Fundamental knowledges</li><li class="spacer"></li><li class="chapter-item expanded "><a href="cha1-terms-n-defs.html"><strong aria-hidden="true">1.</strong> Terms and definitions</a></li><li class="chapter-item expanded "><a href="cha2-lex-convs.html"><strong aria-hidden="true">2.</strong> Lexical conventions</a></li><li class="chapter-item expanded "><a href="cha3-prog-exec.html"><strong aria-hidden="true">3.</strong> Program execution</a></li><li class="chapter-item expanded affix "><li class="part-title">Entities and semantics</li><li class="spacer"></li><li class="chapter-item expanded "><a href="cha4-types.html"><strong aria-hidden="true">4.</strong> Types</a></li><li class="chapter-item expanded "><a href="cha5-id-scope.html"><strong aria-hidden="true">5.</strong> Identifiers and scopes</a></li><li class="chapter-item expanded "><a href="cha6-ffi.html" class="active"><strong aria-hidden="true">6.</strong> Foreign function interface</a></li><li class="chapter-item expanded "><a href="cha7-decls.html"><strong aria-hidden="true">7.</strong> Declarations</a></li><li class="chapter-item expanded "><a href="cha8-exprs.html"><strong aria-hidden="true">8.</strong> Expressions</a></li><li class="chapter-item expanded "><a href="cha9-stmts.html"><strong aria-hidden="true">9.</strong> Statements</a></li><li class="chapter-item expanded "><a href="cha10-attrs.html"><strong aria-hidden="true">10.</strong> Attributes</a></li><li class="chapter-item expanded affix "><li class="part-title">Appendix</li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="app1-grammar.html">A. Grammar of Pr47</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -165,20 +165,71 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h2><a class="header" href="#7-functions---pr47func" id="7-functions---pr47func">  7. Functions   <code>[pr47.func]</code></a></h2>
+                        <h2><a class="header" href="#6---foreign-function-interface---pr47ffi" id="6---foreign-function-interface---pr47ffi">6.   Foreign function interface   <code>[pr47.ffi]</code></a></h2>
+<p><sup>1</sup>   A Pr47 program is able to use Rust types, call Rust functions or export functions to Rust via Pr47 foreign function interace (FFI).</p>
+<h3><a class="header" href="#61---binding-rust-type-pr47ffitype" id="61---binding-rust-type-pr47ffitype">6.1   Binding Rust type <code>[pr47.ffi.type]</code></a></h3>
+<p><sup>1</sup>   An implementation must be able to register any Rust type <code>T: 'static</code> and bind that type to a Pr47 identifier. Bounded type can then be used in Pr47 program via that appointed identifier.</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>    // pseudo code, implementation does not have to be in this way
+    // binding Rust type T to Pr47 identifier a.b.T
+    pr47_instance.bind_type::&lt;T&gt;(&quot;a.b.T&quot;);
+<span class="boring">}
+</span></code></pre></pre>
+<pre><code class="language-go">    import a.b.T;
+
+    func foo(t T) { /* ... */ }
+    func bar() T { /* ... */ }
+</code></pre>
+<p><sup>2</sup>   An implementation may optionally implement a registering mechanism for <code>T: 'a</code>. Restrictions and semantics are implementation defined, and suggested to be coherent with <code>T: 'static</code>.</p>
+<p><sup>3</sup>   Redefining any registered type is considered ill-formed. Registering a type twice is considered ill-formed. Registering types already handled in type fusion rulesis is considered ill-formed.</p>
+<h3><a class="header" href="#62---binding-rust-function-pr47ffifunc" id="62---binding-rust-function-pr47ffifunc">6.2   Binding Rust function <code>[pr47.ffi.func]</code></a></h3>
+<p><sup>1</sup>   An implementation must be able to register any Rust function whose parameter types satisfy one of the following rules:</p>
+<ul>
+<li><code>T: 'static</code></li>
+<li><code>&amp;'a T</code> or <code>&amp;'a mut T</code>, where <code>'a</code> outlives the lifetime of the Pr47 instance (if applicable), and <code>T: 'static</code></li>
+<li><code>Option&lt;T&gt;</code>, where <code>T</code> satisfies one of the two rules above</li>
+</ul>
+<p>  and return type satisfies one of the following rules:</p>
+<ul>
+<li><code>T: 'static</code></li>
+<li><code>&amp;'a T</code> or <code>&amp;'a mut T</code>, where <code>'a</code> outlives the lifetime of the Pr47 instance (if applicable), and <code>T: 'static</code></li>
+<li><code>Option&lt;T&gt;</code>, where <code>T</code> satisfies one of the two rules above</li>
+<li><code>&amp;'a Option&lt;T&gt;</code> or <code>&amp;'a mut Option&lt;T&gt;</code>, where <code>'a </code> outlives the lifetime of the Pr47 instance (if applicable), and <code>T: 'static</code></li>
+<li><code>Result&lt;T, E&gt;</code>, where <code>T</code> satisfies one of the four rules above, and <code>E: 'static + std::error::Error</code></li>
+</ul>
+<p><sup>2</sup>   The implementation should perform the following automatic operations for function arguments:</p>
+<ul>
+<li>for parameter with <code>Option</code> type, convert <code>null</code> value to <code>None</code> variant, and convert non-<code>null</code> value to <code>Some</code> variant according to the following four rules</li>
+<li>for parameter with <code>&amp;'a T</code> type, share Pr47 object with Rust environment</li>
+<li>for parameter with <code>&amp;'a mut T</code> type, mutably share Pr47 object with Rust environment</li>
+<li>for parameter with <code>T: Copy</code> type, copy the Pr47 object to Rust environment</li>
+<li>otherwise, move the Pr47 object to Rust environment</li>
+</ul>
+<p><sup>3</sup>   The implementation should perform the following automatic operations for function return value, step by step:</p>
+<ul>
+<li>for return value with <code>Result&lt;T, E&gt;</code> type, convert <code>Err</code> variant to a Pr47 exception, and convert <code>Ok</code> variant according to the following five rules</li>
+<li>for return value with <code>&amp;'a Option&lt;T&gt;</code> type, convert it to <code>Option&lt;&amp;'a T&gt;</code>; and for <code>&amp;'a mut Option&lt;T&gt;</code>, convert it to <code>Option&lt;&amp;'a mut T&gt;</code></li>
+<li>for return value with <code>Option&lt;T&gt;</code> type, convert <code>None</code> variant to <code>null</code> value, and convert <code>Some</code> variant according to the following three rules</li>
+<li>for return value with <code>&amp;'a T</code> type, share that value with Rust environment</li>
+<li>for return value with <code>&amp;'a mut T</code> type, mutably share that value with Rust environment</li>
+<li>otherwise, move that value to Pr47</li>
+</ul>
+<h3><a class="header" href="#63---exporting-pr47-function-pr47ffiexport" id="63---exporting-pr47-function-pr47ffiexport">6.3   Exporting Pr47 function <code>[pr47.ffi.export]</code></a></h3>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="cha6-vars.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="cha5-id-scope.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="cha8-exprs.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="cha7-decls.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -190,13 +241,13 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="cha6-vars.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="cha5-id-scope.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a rel="next" href="cha8-exprs.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="cha7-decls.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 
