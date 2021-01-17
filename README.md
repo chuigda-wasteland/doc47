@@ -13,7 +13,7 @@ Project-47 (Pr47, 47工程) is a series of attemptations trying to create a mode
 - More powerful function binding
   - Automatically copy for `Copy` types
   - Support `&T` and `&mut T`
-  - Support `T: 'a`, instead of just `T: 'static`
+  - <del>Support `T: 'a`, instead of just `T: 'static`</del> Not possible, otherwise soundness hole.
 - Type fusion
   - `Err` variant of Rust `Result<T, E>` will be automatically translated into Pr47 exception when performing FFI call
   - `None` variant of Rust `Result<T, E>` will be automatically translated into `null` value
