@@ -16,7 +16,7 @@ Project-47 (Pr47, 47工程) is a series of attemptations trying to create a mode
   - <del>Support `T: 'a`, instead of just `T: 'static`</del> Not possible, otherwise soundness hole.
 - Type fusion
   - `Err` variant of Rust `Result<T, E>` will be automatically translated into Pr47 exception when performing FFI call
-  - `None` variant of Rust `Result<T, E>` will be automatically translated into `null` value
+  - `None` variant of Rust `Option<T>` will be automatically translated into `null` value
 
 The file `PR47_BY_EXAMPLE.p47` provides a overview for the Pr47 language. That example will get updated together with the documentation. If you are fresh to the language, that example is for you.
 
