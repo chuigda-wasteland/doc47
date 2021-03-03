@@ -29,13 +29,16 @@ The documentation, however, is a more formal and strict standard for the languag
   - For a statically typed language, you may just use Rust, not Pr47
   - But it is still possible to build world in a static way in Pr47
 - A functional programming language
-  - Functional programming is crap
+  - <del>Functional programming is crap</del>
   - Certain functional features will be added, if appropriate
-  - But never ever want to program in fully functional way
+  - Due to implementational reason, functional programs can be inefficient,
+    and thus programming in full functional style is not encouraged.
 - A easy language
   - Interacting with Rust references makes this language uneasy
+  - We're trying to make this, though
 - A light-weight language
   - Pr47 relies on its static checking to perform perfectly
+  - Light-weightify options may be introduced
 
 ------
 
