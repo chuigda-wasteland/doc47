@@ -36,7 +36,7 @@
   - `T: 'static`
   - `&'a T` or `&'a mut T`, where `'a` outlives the lifetime of the Pr47 instance (if applicable), and `T: 'static`
   - `Option<T>`, where `T` satisfies one of the two rules above
-  - `&'a Option<T>` or `&'a mut Option<T>`, where `'a ` outlives the lifetime of the Pr47 instance (if applicable), and `T: 'static`
+  - `&'a Option<T>` or `&'a mut Option<T>`, and `T: 'static`
   - `Result<T, E>`, where `T` satisfies one of the four rules above, and `E: 'static + std::error::Error`
 
 <sup>2</sup> &emsp; The implementation should perform the following automatic operations for function arguments:
@@ -44,7 +44,6 @@
   - for parameter with `Option` type, convert `null` value to `None` variant, and convert non-`null` value to `Some` variant according to the following four rules
   - for parameter with `&'a T` type, share Pr47 object with Rust environment
   - for parameter with `&'a mut T` type, mutably share Pr47 object with Rust environment
-  - for parameter with `T: Copy` type, copy the Pr47 object to Rust environment
   - otherwise, move the Pr47 object to Rust environment
 
 <sup>3</sup> &emsp; The implementation should perform the following automatic operations for function return value, step by step:

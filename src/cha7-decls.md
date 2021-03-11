@@ -39,6 +39,8 @@ a = "Здравствуйте" // a is of string type now
 
 <sup>4</sup> &emsp; A variable can be declared with `deduced` type. Variables with deduced type are considered typed variables, whose type is automatically deduced from its initializer. Initializer evaluates to value `null` is ill formed.
 
+<sup>5</sup> &emsp; Type deduction always produces non-nullable types.
+
 ```go
 var a deduced = 5; // a deduced to be int
 var b deduced = "привет"; // b deduced to be string

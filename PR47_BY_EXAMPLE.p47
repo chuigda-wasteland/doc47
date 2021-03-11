@@ -24,7 +24,7 @@ func example() {
     // c = 'Б';
 
     // Vectors
-    var v vector<int> = vector(1, 2);
+    var v vector<int> = new vector(1, 2);
 
     // Nested function
     func insert_twice(vec vector<any>, value any) {
@@ -32,10 +32,11 @@ func example() {
         vec.insert(value)
         insert(vec, value)
     }
-    insert_twice(v, 5);
+    insert_twice(v, 13);
+    v.insert_twice(42);
 
     // Objects
-    var obj object = object();
+    var obj object = new object();
     // Create field if not exist, update if exists
     obj.a = 5;
     // Safe to create loops
@@ -81,13 +82,13 @@ func static_sum_of_abs(a int, b float) float {
 )]
 func proof_comm(a, b, c, ab, ba) {
     #[proof(match(
-    // ...
+        todo!()
     ))]
     var dummy = null
 }
 
 // importing items from standard library
-import std.int.parse_int;
+import std.number.parse;
 import std.io.printf;
 import std.io.eprint;
 
@@ -101,14 +102,14 @@ import std.io.eprint;
 // Rust, or executable name not supported by host operating system.
 //
 // <script name> will be null if this script is directly invoked from Rust.
-func application_start(args vector<string>) int {
+#[entry] func application_start(args vector<string>) int {
     if args.len() < 4 {
         printf("At least 4 arguments required, got {}\n", args.len());
         return -1;
     }
     try {
-        var v1 int = args[2].parse_int();
-        var v2 int = args[3].parse_int();
+        var v1 int = args[2].parse(int);
+        var v2 int = args[3].parse(int);
         printf("{} + {} = {}\n", v1, v2, v1 + v2);
         return 0;
     } catch (e error) {

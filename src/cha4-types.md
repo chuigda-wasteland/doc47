@@ -20,7 +20,7 @@
 
 ### 4.3 &emsp; Builtin reference types &emsp; `[pr47.type.ref]`
 
-<sup>1</sup> &emsp; **String** type is denoted by keyword `string` and serves to represent any UTF-8 text. String type should have the same representation with Rust `std::string::String`.
+<sup>1</sup> &emsp; **String** type is denoted by keyword `string` and serves to represent any UTF-8 text. String type should have the same representation with Rust `std::string::String` by default.
 
 <sup>2</sup> &emsp; **Vector** or **dynamic array** type is denoted by keyword `vector` and serves to represent a variable length array. `vector` is a generic container. See grammar and example.
 
@@ -43,10 +43,18 @@
 >
 > <sup>5</sup> &emsp; **any** type
 
-### 4.4 &emsp; Foreign types &emsp; `[pr47.type.foreign]`
+<sup>6</sup> &emsp; There's no reference to value-typed objects in Pr47.
+
+### 4.4 &emsp; Nullable types &emsp; `[pr47.type.nullable]`
+
+<sup>1</sup> &emsp; All types and variables are by default not nullable, and thus cannot store the `null` value.
+
+<sup>2</sup> &emsp; For each non-nullable type `T`, there's a nullable counterpart `?T`, which is capable of storing `null` value.
+
+### 4.5 &emsp; Foreign types &emsp; `[pr47.type.foreign]`
 
 > TODO
 
-### 4.5 &emsp; Type fusion &emsp; `[pr47.type.fusion]`
+### 4.6 &emsp; Type fusion &emsp; `[pr47.type.fusion]`
 
 > TODO
